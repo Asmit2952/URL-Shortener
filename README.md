@@ -12,6 +12,13 @@ npm install
 Run file
 
 ```
-npm run dev
+npm run start
 ```
+
+**Change credentials database (.env)**
+
+```
+MONGO_URL=mongodb+srv://<username>:<password>@cluster0.kseg8.mongodb.net/<database>?retryWrites=true&w=majority
+```
+
 On your browser, head to `localhost:5000`

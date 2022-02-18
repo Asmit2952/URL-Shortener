@@ -1,0 +1,1 @@
+bot: nodemon server.js

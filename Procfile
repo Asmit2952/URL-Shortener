@@ -1,1 +1,1 @@
-bot: nodemon server.js
+bot: node ./server.js

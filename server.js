@@ -1,11 +1,15 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const app = express()
 
-mongoose.connect('mongodb://localhost/urlShortener', {
-  useNewUrlParser: true, useUnifiedTopology: true
-})
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost/urlShortener';
+
+mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+  if (err) console.log(`Error ocurred while connecting to DB! - ${MONGO_URL}`);
+  else console.log('Database connection established successfully');
+});
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -31,4 +35,4 @@ app.get('/:shortUrl', async (req, res) => {
   res.redirect(shortUrl.full)
 })
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 5000, () => { console.log('Web application started...') });
